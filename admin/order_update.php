@@ -1,188 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
 <?php
-
 include("../connection/connect.php");
 error_reporting(0);
 session_start();
 
-  if(isset($_POST['update']))
-  {
-$form_id=$_GET['form_id'];
-$status=$_POST['status'];
-$remark=$_POST['remark'];
-$query=mysqli_query($db,"insert into remark(frm_id,status,remark) values('$form_id','$status','$remark')");
-$sql=mysqli_query($db,"update users_orders set status='$status' where o_id='$form_id'");
-
-echo "<script>alert('form details updated successfully');</script>";
-
-  }
-
- ?>
-<script language="javascript" type="text/javascript">
-function f2()
-{
-window.close();
-}ser
-function f3()
-{
-window.print(); 
+if(isset($_POST['update'])) {
+    $form_id=$_GET['form_id'];
+    $status=$_POST['status'];
+    $remark=$_POST['remark'];
+    $query=mysqli_query($db,"INSERT INTO remark(frm_id,status,remark) VALUES('$form_id','$status','$remark')");
+    $sql=mysqli_query($db,"UPDATE users_orders SET status='$status' WHERE o_id='$form_id'");
+    $success = true;
 }
-</script>
+?>
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon.png">
-    <title>Ela - Bootstrap Admin Dashboard Template</title>
-    <!-- Bootstrap Core CSS -->
+    <title>Update Order Status</title>
     <link href="css/lib/bootstrap/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
-    <link href="css/helper.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:** -->
-    <!--[if lt IE 9]>
-    <script src="https:**oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https:**oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
-<style type="text/css" rel="stylesheet">
-
-
-.indent-small {
-  margin-left: 5px;
-}
-.form-group.internal {
-  margin-bottom: 0;
-}
-.dialog-panel {
-  margin: 10px;
-}
-.datepicker-dropdown {
-  z-index: 200 !important;
-}
-.panel-body {
-  background: #e5e5e5;
-  /* Old browsers */
-  background: -moz-radial-gradient(center, ellipse cover, #e5e5e5 0%, #ffffff 100%);
-  /* FF3.6+ */
-  background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%, #e5e5e5), color-stop(100%, #ffffff));
-  /* Chrome,Safari4+ */
-  background: -webkit-radial-gradient(center, ellipse cover, #e5e5e5 0%, #ffffff 100%);
-  /* Chrome10+,Safari5.1+ */
-  background: -o-radial-gradient(center, ellipse cover, #e5e5e5 0%, #ffffff 100%);
-  /* Opera 12+ */
-  background: -ms-radial-gradient(center, ellipse cover, #e5e5e5 0%, #ffffff 100%);
-  /* IE10+ */
-  background: radial-gradient(ellipse at center, #e5e5e5 0%, #ffffff 100%);
-  /* W3C */
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#e5e5e5', endColorstr='#ffffff', GradientType=1);
-  /* IE6-9 fallback on horizontal gradient */
-  font: 600 15px "Open Sans", Arial, sans-serif;
-}
-label.control-label {
-  font-weight: 600;
-  color: #777;
-}
-
-
-
-
-
-
-
-
-table { 
-	width: 650px; 
-	border-collapse: collapse; 
-	margin: auto;
-	margin-top:50px;
-	}
-
-/* Zebra striping */
-tr:nth-of-type(odd) { 
-	background: #eee; 
-	}
-
-th { 
-	background: #004684; 
-	color: white; 
-	font-weight: bold; 
-	}
-
-td, th { 
-	padding: 10px; 
-	border: 1px solid #ccc; 
-	text-align: left; 
-	font-size: 14px;
-	}
-
-
-
-	</style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="css/modern-admin.css" rel="stylesheet">
+    <script language="javascript" type="text/javascript">
+        function f2() { window.close(); }
+    </script>
+    <style>
+        body { background: #f8f9fa; font-family: 'Inter', sans-serif; padding: 20px; }
+        .update-card { background: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); overflow: hidden; max-width: 500px; margin: auto; }
+        .update-header { background: var(--secondary); color: white; padding: 25px; text-align: center; }
+        .update-body { padding: 30px; }
+        .form-label { font-weight: 600; color: #6c757d; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 8px; display: block; }
+        .btn-update { background: var(--primary); color: white; border: none; padding: 12px; border-radius: 8px; width: 100%; font-weight: 600; transition: 0.3s; margin-top: 10px; }
+        .btn-update:hover { background: #e04d2e; transform: translateY(-2px); }
+        .btn-close-popup { background: #eee; color: #666; border: none; padding: 12px; border-radius: 8px; width: 100%; font-weight: 600; margin-top: 10px; transition: 0.3s; }
+        .btn-close-popup:hover { background: #ddd; }
+    </style>
 </head>
 
 <body>
+    <div class="update-card animate-fade">
+        <div class="update-header">
+            <h4 class="mb-0 font-weight-bold text-white">Update Order Status</h4>
+            <p class="mb-0 opacity-75 small">Order ID: #<?php echo htmlentities($_GET['form_id']); ?></p>
+        </div>
+        <div class="update-body">
+            <?php if($success): ?>
+                <div class="alert alert-success text-center mb-4">
+                    <strong>Success!</strong> Order status updated.
+                </div>
+            <?php endif; ?>
 
-<div style="margin-left:50px;">
- <form name="updateticket" id="updatecomplaint" method="post"> 
- 
- 
- 
- 
-<table  border="0" cellspacing="0" cellpadding="0">
-     <tr >
-      <td><b>form Number</b></td>
-      <td><?php echo htmlentities($_GET['form_id']); ?></td>
-    </tr>
-	<tr>
-      <td  >&nbsp;</td>
+            <form name="updateticket" id="updatecomplaint" method="post">
+                <div class="form-group mb-4">
+                    <label class="form-label">New Status</label>
+                    <select name="status" class="form-control custom-select" required>
+                        <option value="">-- Select Status --</option>
+                        <option value="in process">In Process</option>
+                        <option value="closed">Closed (Delivered)</option>
+                        <option value="rejected">Rejected (Cancelled)</option>
+                    </select>
+                </div>
 
-      <td >&nbsp;</td>
-    </tr>
-   
-    <tr >
-      <td><b>Status</b></td>
-      <td><select name="status" required="required" >
-      <option value="">Select Status</option>
-      <option value="in process">In Process</option>
-    <option value="closed">Closed</option>
-	 <option value="rejected">rejected</option>
-        
-      </select></td>
-    </tr>
+                <div class="form-group mb-4">
+                    <label class="form-label">Remark / Note</label>
+                    <textarea name="remark" class="form-control" rows="5" placeholder="Enter order notes here..." required></textarea>
+                </div>
 
-
-      <tr >
-      <td><b>Remark</b></td>
-      <td><textarea name="remark" cols="50" rows="10" required="required"></textarea></td>
-    </tr>
-    
-
-
-        <tr>
-      <td><b>Action</b></td>
-      <td><input type="submit" name="update"  class="btn btn-primary" value="Submit">
-	   
-      <input name="Submit2" type="submit"  class="btn btn-danger"  value="Close this window " onClick="return f2();" style="cursor: pointer;"  /></td>
-    </tr>
-
-
-
-     
-   
-   
-
- 
-</table>
- </form>
-</div>
-
+                <button type="submit" name="update" class="btn-update">
+                    <i class="fa fa-check-circle mr-2"></i> Update Order
+                </button>
+                
+                <button type="button" class="btn-close-popup" onClick="f2();">
+                    Close Window
+                </button>
+            </form>
+        </div>
+    </div>
 </body>
 </html>
-
-   

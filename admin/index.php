@@ -94,59 +94,89 @@ if(isset($_POST['submit1'] ))
 
 <head>
   <meta charset="UTF-8">
-  <title>Flat Login Form</title>
+  <title>Admin Login | FoodPicko</title>
   
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-
-  <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900'>
-<link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
-<link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
-
-      <link rel="stylesheet" href="css/login.css">
-
-  
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/font-awesome.min.css">
+  <link rel="stylesheet" href="../css/modern-ui.css">
 </head>
 
-<body>
+<body class="auth-page">
 
-  
-<div class="container">
-  <div class="info">
-    <h1>Administration </h1><span> login Account</span>
+<div class="auth-card animate-up">
+  <div class="mb-4 text-center">
+    <img src="images/manager.png" alt="Admin" style="height: 80px; border-radius: 50%; border: 3px solid var(--primary); padding: 5px;">
+  </div>
+
+  <div class="info mb-4">
+    <h2>Administration</h2>
+    <p>Login Account</p>
+  </div>
+
+  <div class="form">
+    <?php if($message): ?>
+        <div class="alert alert-danger" role="alert">
+            <?php echo $message; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if($success): ?>
+        <div class="alert alert-success" role="alert">
+            <?php echo $success; ?>
+        </div>
+    <?php endif; ?>
+
+    <form class="register-form" action="index.php" method="post" style="display: none;">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" class="form-control" placeholder="Pick a username" name="cr_user" required/>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="text" class="form-control" placeholder="email@example.com"  name="cr_email" required/>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" placeholder="Min. 6 characters"  name="cr_pass" required/>
+      </div>
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" class="form-control" placeholder="Repeat your password"  name="cr_cpass" required/>
+      </div>
+      <div class="form-group">
+        <label>Unique-Code</label>
+        <input type="password" class="form-control" placeholder="Enter unique code"  name="code" required/>
+      </div>
+      <input type="submit" name="submit1" class="btn theme-btn btn-block" value="Create Account" />
+      <p class="auth-footer message">Already registered? <a href="#">Sign In</a></p>
+    </form>
+
+    <form class="login-form" action="index.php" method="post">
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" class="form-control" placeholder="Enter username" name="username" required/>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" class="form-control" placeholder="Enter password" name="password" required/>
+      </div>
+      <input type="submit" name="submit" class="btn theme-btn btn-block" value="Login" />
+      
+      <div class="mt-4 p-3 bg-light rounded small text-muted">
+        <strong>Demo Credentials:</strong><br>
+        username: admin | password: 1234
+      </div>
+
+      <p class="auth-footer message mt-3">Not registered? <a href="#">Create an account</a></p>
+    </form>
   </div>
 </div>
-<div class="form">
-  <div class="thumbnail"><img src="images/manager.png"/></div>
-  
-  <form class="register-form" action="index.php" method="post">
-    <input type="text" placeholder="username" name="cr_user"/>
-    <input type="text" placeholder="email address"  name="cr_email"/>
-	 <input type="password" placeholder="password"  name="cr_pass"/>
-	  <input type="password" placeholder="Confirm password"  name="cr_cpass"/>
-	  <input type="password" placeholder="Unique-Code"  name="code"/>
-   <input type="submit"  name="submit1" value="Create" />
-    <p class="message">Already registered? <a href="#">Sign In</a></p>
-  </form>
-  <span>username:admin</span>&nbsp;<span>password:1234</span>
-  <span style="color:red;"><?php echo $message; ?></span>
-   <span style="color:green;"><?php echo $success; ?></span>
-  <form class="login-form" action="index.php" method="post">
-    <input type="text" placeholder="username" name="username"/>
-    <input type="password" placeholder="password" name="password"/>
-    <input type="submit"  name="submit" value="login" />
-    <p class="message">Not registered? <a href="#">Create an account</a></p>
-  </form>
-  
-</div>
 
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
-  <script src='js/index.js'></script>
-  
-
-    
-
-
-
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script>
+  $('.message a').click(function(){
+     $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
+  });
+</script>
 </body>
-
 </html>
