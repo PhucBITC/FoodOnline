@@ -12,6 +12,68 @@ session_start();
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/modern-ui.css" rel="stylesheet">
+    <style>
+        .hero {
+            position: relative;
+            background: #222;
+            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-slider {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+
+        .hero-slide.active {
+            opacity: 1;
+        }
+
+        /* Dark overlay to ensure text is readable */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+            z-index: 2;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+        }
+
+        .animate-up {
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
 </head>
 
 <body class="home">
@@ -37,11 +99,16 @@ session_start();
         </nav>
     </header>
 
-    <section class="hero bg-image animate-up" style="background-image: url('images/modern-hero.jpg');">
+    <section class="hero animate-up">
+        <div class="hero-slider">
+            <div class="hero-slide active" style="background-image: url('images/hero-1.png');"></div>
+            <div class="hero-slide" style="background-image: url('images/hero-2.png');"></div>
+            <div class="hero-slide" style="background-image: url('images/hero-3.png');"></div>
+        </div>
         <div class="hero-inner">
             <div class="container text-center hero-text">
                 <h1 class="text-white">Savor the Best Flavors <br> Delivered to Your Door</h1>
-                <h5 class="text-white-50 mt-3 mb-5">Discover top-rated restaurants and exclusive deals in your area</h5>
+                <h5 class="text-primary mt-3 mb-5">Discover top-rated restaurants and exclusive deals in your area</h5>
                 <div class="banner-form mx-auto" style="max-width: 600px;">
                     <form class="form-inline d-flex" action="restaurants.php" method="get">
                         <input type="text" name="search" class="form-control form-control-lg flex-grow-1" placeholder="What are you craving?" style="border-radius: 30px 0 0 30px; border: none;">
@@ -70,29 +137,36 @@ session_start();
         </div>
     </section>
 
-    <section class="popular py-5 bg-white">
+   <section class="popular py-5 bg-white">
         <div class="container">
             <div class="title text-center mb-5">
                 <h2 class="animate-up">Popular Dishes of the Month</h2>
                 <p class="text-muted animate-up">The easiest way to your favorite food, delivered fresh and fast.</p>
             </div>
-            <div class="row">
+            <div class="row align-items-stretch">
                 <?php 
                 $query_res = mysqli_query($db, "select * from dishes LIMIT 6"); 
                 while($r = mysqli_fetch_array($query_res)) {
                 ?>
-                    <div class="col-md-4 mb-4 food-item animate-up">
-                        <div class="card border-0 shadow-sm overflow-hidden h-100 transition-up">
+                    <div class="col-12 col-sm-6 col-md-4 mb-4 d-flex animate-up">
+                        <div class="card border-0 shadow-sm overflow-hidden w-100 transition-up d-flex flex-column h-100">
                             <div class="position-relative">
-                                <img src="admin/Res_img/dishes/<?php echo $r['img']; ?>" class="card-img-top" alt="<?php echo $r['title']; ?>" style="height: 200px; object-fit: cover;">
-                                <div class="position-absolute p-3" style="top: 0; right: 0;">
-                                    <span class="badge badge-light shadow-sm text-primary px-3 py-2" style="border-radius: 20px;">$<?php echo $r['price']; ?></span>
-                                </div>
+                                <img src="admin/Res_img/dishes/<?php echo $r['img']; ?>" class="card-img-top" alt="<?php echo $r['title']; ?>" style="height: 220px; object-fit: cover; width: 100%;">
                             </div>
-                            <div class="card-body p-4">
-                                <h5 class="card-title font-weight-bold mb-2"><?php echo $r['title']; ?></h5>
-                                <p class="card-text text-muted small mb-4"><?php echo $r['slogan']; ?></p>
-                                <a href="dishes.php?res_id=<?php echo $r['rs_id']; ?>" class="btn btn-outline-primary btn-block">Order Now</a>
+                            <div class="card-body p-4 d-flex flex-column flex-grow-1 text-center">
+                                <div class="mb-2">
+                                    <span class="text-primary font-weight-bold h5">$<?php echo $r['price']; ?></span>
+                                </div>
+                                <h5 class="card-title font-weight-bold mb-2 text-truncate-1" title="<?php echo $r['title']; ?>"><?php echo $r['title']; ?></h5>
+                                <p class="card-text text-muted small mb-4 flex-grow-1 text-truncate-2" title="<?php echo $r['slogan']; ?>"><?php echo $r['slogan']; ?></p>
+                                
+                               <div class="d-flex justify-content-between align-items-center mt-auto w-100">
+                                 <a href="dishes.php?res_id=<?php echo $r['rs_id']; ?>" class="btn btn-primary">Order Now</a>
+    
+                                 <a href="dish_detail.php?d_id=<?php echo $r['d_id']; ?>" class="btn btn-outline-primary px-3 d-flex align-items-center justify-content-center" title="View Details">
+                                    <i class="fa fa-eye"></i>
+                                 </a>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -107,21 +181,25 @@ session_start();
                 <h2 class="animate-up">Explore Top Restaurants</h2>
                 <p class="text-muted animate-up">Handpicked local favorites just for you.</p>
             </div>
-            <div class="row">
+            <div class="row align-items-stretch">
                 <?php 
                 $ress = mysqli_query($db, "select * from restaurant LIMIT 4");  
                 while($rows = mysqli_fetch_array($ress)) {
                 ?>
-                    <div class="col-md-6 mb-4 animate-up">
-                        <div class="restaurant-wrap p-3 bg-white shadow-sm rounded transition-up h-100">
+                    <div class="col-12 col-md-6 mb-4 d-flex animate-up">
+                        <div class="restaurant-wrap p-3 bg-white shadow-sm rounded transition-up w-100 h-100 d-flex flex-column justify-content-center">
                             <div class="d-flex align-items-center">
-                                <a href="dishes.php?res_id=<?php echo $rows['rs_id']; ?>" class="mr-3 overflow-hidden rounded" style="width: 100px; height: 100px; flex-shrink: 0;">
+                                <a href="restaurant_detail.php?res_id=<?php echo $rows['rs_id']; ?>" class="mr-3 overflow-hidden rounded" style="width: 100px; height: 100px; flex-shrink: 0;">
                                     <img src="admin/Res_img/<?php echo $rows['image']; ?>" alt="Restaurant" class="w-100 h-100" style="object-fit: cover;">
                                 </a>
-                                <div class="flex-grow-1">
-                                    <h5 class="mb-1"><a href="dishes.php?res_id=<?php echo $rows['rs_id']; ?>" class="text-dark font-weight-bold"><?php echo $rows['title']; ?></a></h5>
-                                    <p class="text-muted small mb-2"><i class="fa fa-map-marker text-primary mr-1"></i> <?php echo $rows['address']; ?></p>
-                                    <div class="d-flex align-items-center small text-muted">
+                                <div class="flex-grow-1 overflow-hidden">
+                                    <h5 class="mb-1 text-truncate-1" title="<?php echo $rows['title']; ?>">
+                                        <a href="restaurant_detail.php?res_id=<?php echo $rows['rs_id']; ?>" class="text-dark font-weight-bold"><?php echo $rows['title']; ?></a>
+                                    </h5>
+                                    <p class="text-muted small mb-2 text-truncate-1" title="<?php echo $rows['address']; ?>">
+                                        <i class="fa fa-map-marker text-primary mr-1"></i> <?php echo $rows['address']; ?>
+                                    </p>
+                                    <div class="d-flex align-items-center small text-muted flex-wrap">
                                         <span class="mr-3"><i class="fa fa-clock-o text-primary mr-1"></i> 25-35 min</span>
                                         <span><i class="fa fa-star text-warning mr-1"></i> 4.5 (122 Reviews)</span>
                                     </div>
@@ -131,7 +209,7 @@ session_start();
                     </div>
                 <?php } ?>
             </div>
-            <div class="text-center mt-4">
+            <div class="d-flex justify-content-center mt-4">
                 <a href="restaurants.php" class="btn btn-primary btn-lg px-5">View All Restaurants</a>
             </div>
         </div>
@@ -177,5 +255,23 @@ session_start();
 
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            let currentSlide = 0;
+            const slides = $('.hero-slide');
+            const slideCount = slides.length;
+
+            if (slideCount > 1) {
+                function nextSlide() {
+                    slides.eq(currentSlide).removeClass('active');
+                    currentSlide = (currentSlide + 1) % slideCount;
+                    slides.eq(currentSlide).addClass('active');
+                }
+
+                // Change slide every 5 seconds
+                setInterval(nextSlide, 5000);
+            }
+        });
+    </script>
 </body>
 </html>

@@ -61,7 +61,7 @@ a {
 
 a:hover {
     text-decoration: none;
-    color: #ef3b0e
+    color: #ef3b0e;
 }
 
 .lead {
@@ -118,7 +118,7 @@ hr {
 
 .inner-page {
     margin-top: 30px;
-    margin-bottom: 50px
+    margin-bottom: 50px;
 }
 
 
@@ -151,21 +151,21 @@ hr {
 }
 
 .custom-radio .custom-control-input:checked~.custom-control-indicator {
-    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns="http: //www.w3.org/2000/svg" viewBox="0 0 8 8"%3E%3Cpath fill="%23fff" d="M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z"/%3E%3C/svg%3E")
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
 }
 
 .custom-control-input:active~.custom-control-indicator {
     color: #fff;
-    background-color: #f30
+    background-color: #f30;
 }
 
 .custom-control-input:disabled~.custom-control-indicator {
     cursor: not-allowed;
-    background-color: #eee
+    background-color: #eee;
 }
 
 .custom-control-input:disabled~.custom-control-description {
-    color: #76767
+    color: #767676;
 }
 
 .custom-control {
@@ -178,7 +178,7 @@ hr {
 }
 
 .custom-select {
-    line-height: 1
+    line-height: 1;
 }
 
 
@@ -192,7 +192,7 @@ hr {
 .btn-group-lg>.btn,
 .btn-lg,
 .img-rounded {
-    border-radius: 2px
+    border-radius: 2px;
 }
 
 .btn {
@@ -208,13 +208,13 @@ hr {
 .theme-btn {
     background-color: #f30;
     border-color: #f30;
-    color: #fff
+    color: #fff;
 }
 
 .theme-btn-dash {
     border: 2px dashed #f30;
     background-color: transparent;
-    color: #f30
+    color: #f30;
 }
 
 .theme-btn-dash:hover,
@@ -228,15 +228,15 @@ hr {
 
 .theme-btn-dash:hover {
     border: 2px solid #f30;
-    color: #fff
+    color: #fff;
 }
 
 .bg-white {
-    background-color: #fff
+    background-color: #fff;
 }
 
 .primary-color {
-    color: #f30
+    color: #f30;
 }
 
 
@@ -246,17 +246,17 @@ hr {
 
 .space-xs {
     padding-bottom: 15px;
-    padding-top: 15px
+    padding-top: 15px;
 }
 
 .space-sm {
-    padding-bottom: 30;
-    padding-top: 30px
+    padding-bottom: 30px;
+    padding-top: 30px;
 }
 
 .space-md {
     padding-top: 90px;
-    padding-bottom: 90px
+    padding-bottom: 90px;
 }
 
 .m-b-10 {
@@ -272,11 +272,11 @@ hr {
 }
 
 .m-t-10 {
-    margin-top: 10px
+    margin-top: 10px;
 }
 
 .m-t-20 {
-    margin-top: 20px
+    margin-top: 20px;
 }
 
 .m-t-30 {
@@ -284,35 +284,35 @@ hr {
 }
 
 .b-l {
-    border-left: 1px solid #edeed
+    border-left: 1px solid #ededed;
 }
 
 .b-r {
-    border-left: 1px solid #edeed
+    border-left: 1px solid #ededed;
 }
 
 .b-t {
-    border-top: 1px solid #edeed
+    border-top: 1px solid #ededed;
 }
 
 .b-b {
-    border-bottom: 1px solid #edeed
+    border-bottom: 1px solid #ededed;
 }
 
 .b-b-0 {
-    border-bottom: none !important
+    border-bottom: none !important;
 }
 
 .b-t-0 {
-    border-top: none !important
+    border-top: none !important;
 }
 
 .b-l-0 {
-    border-left: none !important
+    border-left: none !important;
 }
 
 .b-r-0 {
-    border-right: none !important
+    border-right: none !important;
 }
 
 .align-wrap {
@@ -326,7 +326,7 @@ hr {
 }
 
 .font-white {
-    color: #fff
+    color: #fff;
 }
 
 
@@ -391,26 +391,32 @@ hr {
         padding-top: .425rem;
         padding-left: 0.75rem;
     }
+
     .navbar-nav .nav-item {
         float: none;
     }
+
     .navbar-brand {
         float: right;
     }
+
     .navbar-brand,
     .navbar-nav .nav-item {
         display: block;
     }
-    .navbar-nav .nav-item + .nav-item {
+
+    .navbar-nav .nav-item+.nav-item {
         margin-left: 0;
     }
+
     .dropdown-menu {
         position: relative;
         float: none;
         background-color: transparent;
     }
+
     .dropdown-menu a {
-        color: #fff
+        color: #fff;
     }
 }
 
@@ -423,7 +429,7 @@ hr {
 }
 
 .navbar-fixed-top {
-    position: fixed
+    position: fixed;
 }
 
 .navbar-toggler {
@@ -455,11 +461,11 @@ hr {
 
 .link-item.active span {
     background-color: #f30;
-    color: #fff
+    color: #fff;
 }
 
 .links {
-    display: block
+    display: block;
 }
 
 .links span {
@@ -479,12 +485,12 @@ hr {
 
 .links li:hover span {
     background-color: #e8500e;
-    color: #fff
+    color: #fff;
 }
 
 @media (max-width:800px) {
     .top-links {
-        display: none
+        display: none;
     }
 }
 
@@ -521,7 +527,7 @@ hr {
 
 .hero .hero-inner {
     position: relative;
-    z-index: 1
+    z-index: 1;
 }
 
 
@@ -581,10 +587,12 @@ hr {
 }
 
 @media (max-width: 568px) and (min-width: 280px) {
+
     .step1:after,
     .step2:after {
-        display: none
+        display: none;
     }
+
     .hero h1 {
         font-size: 2.2em;
         padding-top: 75px;
@@ -695,9 +703,11 @@ hr {
         float: left;
         padding: 10px;
     }
+
     .food-item .left img {
         width: 45px
     }
+
     .food-item-wrap .right-text {
         font-size: 13px;
     }
@@ -831,13 +841,11 @@ hr {
 }
 
 .food-item-wrap .lf-ghost {
-    width: 395px!important;
+    width: 395px !important;
     float: left;
 }
 
-@media (max-width: 543px) {
-    ...
-}
+
 
 @media (min-width: 544px) and (max-width: 767px) {
     .food-item-wrap .right-text {
@@ -845,6 +853,7 @@ hr {
         font-size: 14px;
         line-height: 20px;
     }
+
     .food-item-wrap .right-like-part {
         width: 100%;
         padding: 5px 10px;
@@ -859,30 +868,37 @@ hr {
     .food-item-wrap .restaurant-block {
         text-align: center;
     }
+
     .food-item-wrap .left {
-        float: none
+        float: none;
     }
+
     .food-item-wrap .pull-left {
-        float: none
+        float: none;
     }
+
     .food-item-wrap .right-text span,
     .food-item-wrap .right-like-part,
     .food-item-wrap .right-like-part span {
         width: 100%;
     }
+
     .right-like-part.pull-right {
         background-color: #fff;
         border: 0;
         border-top: 1px solid #eaebeb;
         padding: 10px;
     }
+
     .food-item-wrap .price-btn-block {
-        text-align: center
+        text-align: center;
     }
+
     .food-item-wrap .price-btn-block .price {
         margin-bottom: 15px;
         display: block;
     }
+
     .food-item-wrap .price-btn-block .btn {
         float: none;
     }
@@ -894,10 +910,6 @@ hr {
         font-size: 11px;
         line-height: 20px;
     }
-}
-
-@media (min-width: 1200px) {
-    ...
 }
 
 
@@ -912,7 +924,7 @@ hr {
 }
 
 .cart-addon .food-item:last-of-type {
-    border-bottom: none
+    border-bottom: none;
 }
 
 .cart-addon .food-item .item-img img {
@@ -1023,7 +1035,7 @@ How it works section
 }
 
 .how-it-works h3 {
-    color: #fff
+    color: #fff;
 }
 
 
@@ -1072,7 +1084,7 @@ Steps
 }
 
 .how-it-works .step-2 {
-    padding-top: 20%
+    padding-top: 20%;
 }
 
 .col1:after {
@@ -1100,35 +1112,33 @@ Steps
 }
 
 @media (max-width: 543px) {
+
     .col1:after,
     .col2:after {
-        display: none
+        display: none;
     }
 }
 
 @media (min-width: 544px) and (max-width: 767px) {
     .col1:after,
     .col2:after {
-        display: none
+        display: none;
     }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
     .col1:after,
     .col2:after {
-        display: none
+        display: none;
     }
 }
 
 @media (min-width: 992px) and (max-width: 1199px) {
+
     .col1:after,
     .col2:after {
         right: -30%;
     }
-}
-
-@media (min-width: 1200px) {
-    ...
 }
 
 
@@ -1144,11 +1154,13 @@ Steps
         padding: 50px 0 20px;
         position: relative;
     }
+
     .featured-restaurants .title-block {
         margin-bottom: 15px;
     }
+
     .featured-restaurants .title-block h4 {
-        font-size: 21px
+        font-size: 21px;
     }
 }
 
@@ -1164,7 +1176,7 @@ Steps
 
 @media (min-width: 280px) and (max-width: 580px) {
     .featured-restaurants:before {
-        display: none
+        display: none;
     }
 }
 
@@ -1191,6 +1203,7 @@ Steps
     .restaurant-wrap {
         /* text-align:center */
     }
+
     .featured-restaurants .restaurant-logo img {
         width: 85px;
         margin-bottom: 15px;
@@ -1207,7 +1220,7 @@ Steps
 }
 
 .featured-restaurants .bottom-part {
-    margin-top: 5px
+    margin-top: 5px;
 }
 
 .featured-restaurants .cost,
@@ -1226,7 +1239,7 @@ Steps
     color: #f30;
 }
 
-.featured-restaurants .ratings .fa-star-o {}
+
 
 .restaurants-filter ul li {
     display: inline-block;
@@ -1248,6 +1261,7 @@ Steps
     .restaurants-filter {
         float: none;
     }
+
     .restaurants-filter ul li {
         padding: 0 0.5rem;
     }
@@ -1282,25 +1296,17 @@ Steps
     .featured-restaurants .restaurant-wrap {
         margin-bottom: 10px;
     }
+
     .add-restaurants {
-        text-align: center
+        text-align: center;
     }
+
     .add-restaurants a.btn.theme-btn {
-        display: block
+        display: block;
     }
 }
 
-@media (min-width: 544px) and (max-width: 767px) {}
 
-@media (min-width: 768px) and (max-width: 991px) {
-    .featured-restaurants .restaurant-wrap {
-        text-align: center
-    }
-}
-
-@media (min-width: 992px) and (max-width: 1199px) {}
-
-@media (min-width: 1200px) {}
 
 
 /*-----------------------------------  
@@ -1309,7 +1315,7 @@ App section
 
 .app-section {
     padding-top: 35px;
-    position: relative
+    position: relative;
 }
 
 .app-section:after {
@@ -1328,12 +1334,12 @@ App section
 
 .app-wrap {
     position: relative;
-    z-index: 2
+    z-index: 2;
 }
 
 @media (min-width: 280px) and (max-width: 568px) {
     .app-wrap {
-        padding-bottom: 30px
+        padding-bottom: 30px;
     }
 }
 
@@ -1400,8 +1406,9 @@ App section
     .app-section {
         padding: 55px 0;
     }
+
     .text-img-block figure {
-        display: none
+        display: none;
     }
 }
 
@@ -1410,18 +1417,22 @@ App section
         padding-top: 100px;
         font-size: 80%;
     }
+
     .app-btn i {
         font-size: 28px;
         line-height: 41px;
         margin: 0px;
         padding: 0 18px;
     }
+
     .app-btn {
-        padding-right: 5px
+        padding-right: 5px;
     }
+
     .app-btn .pull-right {
-        padding: 7px 14px 0 5px
+        padding: 7px 14px 0 5px;
     }
+
     .app-btn i {
         padding: 0 10px;
     }
@@ -1552,7 +1563,7 @@ footer li a {
 
 .image-wrap figure img {
     max-width: 100%;
-    display: block
+    display: block;
 }
 
 .profile p {
@@ -1569,7 +1580,7 @@ footer li a {
     color: #fff;
 }
 
-.profile .right-text {}
+
 
 .profile-img {
     width: 24.7%;
@@ -1615,20 +1626,25 @@ footer li a {
     .profile-desc .right-text {
         margin-top: 0;
     }
+
     .profile-desc h6 {
         margin-right: 0;
     }
+
     .image-wrap {
         padding: 1px;
         border-radius: 2px;
         margin-bottom: 20px
     }
+
     .profile-desc a.btn {
-        float: right
+        float: right;
     }
+
     .image-wrap img {
         width: auto;
     }
+
     .profile-img {
         width: 100%
     }
@@ -1682,8 +1698,9 @@ footer li a {
         margin-right: 15px;
         position: relative;
     }
+
     .breadcrumb ul li:before {
-        display: none
+        display: none;
     }
 }
 
@@ -1745,7 +1762,7 @@ footer li a {
 }
 
 .menu-widget .widget-heading {
-    border-bottom: none
+    border-bottom: none;
 }
 
 .widget-heading .widget-title {
@@ -1774,7 +1791,7 @@ footer li a {
 }
 
 .sidebar .widget-delivery .col-xs-6 {
-    border-bottom: none
+    border-bottom: none;
 }
 
 .sidebar-title {
@@ -1827,7 +1844,7 @@ footer li a {
 }
 
 .main-block ul li:hover a {
-    color: #f30
+    color: #f30;
 }
 
 .main-block ul:hover li:last-child {
@@ -1836,7 +1853,7 @@ footer li a {
 }
 
 .main-block ul li:first-of-type {
-    border-top: none
+    border-top: none;
 }
 
 a.more-link {
@@ -1857,7 +1874,7 @@ a.more-link {
 .main-block .input-group input,
 .main-block .input-group-btn {
     height: 55px;
-    border-left: none
+    border-left: none;
 }
 
 
@@ -1884,13 +1901,13 @@ a.more-link {
 
 .panel-heading {
     padding: 15px;
-    border: none!important;
+    border: none !important;
     border-radius: 0;
 }
 
 .panel-heading i {
     padding-right: 7px;
-    font-size: 14px
+    font-size: 14px;
 }
 
 .panel-title {
@@ -1931,7 +1948,7 @@ a.more-link {
 }
 
 .menu-widget .food-item:first-of-type {
-    border-bottom: none
+    border-bottom: none;
 }
 
 .menu-widget .food-item .restaurant-logo {
@@ -1942,7 +1959,7 @@ a.more-link {
 
 .menu-widget .food-item .restaurant-logo img {
     max-width: 100%;
-    display: block
+    display: block;
 }
 
 .menu-widget .food-item:first-of-type {
@@ -1950,11 +1967,11 @@ a.more-link {
 }
 
 .menu-widget .food-item:last-of-type {
-    border-bottom: transparent
+    border-bottom: transparent;
 }
 
 .menu-widget .food-item.white {
-    background-color: #fff
+    background-color: #fff;
 }
 
 .menu-widget .food-item .rest-descr {
@@ -1969,7 +1986,7 @@ a.more-link {
 }
 
 .menu-widget .food-item .item-cart-info {
-    padding-top: 20px
+    padding-top: 20px;
 }
 
 .menu-widget .food-item .price {
@@ -1992,11 +2009,11 @@ a.more-link {
 }
 
 .order-row {
-    border-bottom: 1px solid #eaebeb
+    border-bottom: 1px solid #eaebeb;
 }
 
 .order-row:last-of-type {
-    border-bottom: none
+    border-bottom: none;
 }
 
 @media (max-width: 543px) {
@@ -2056,12 +2073,12 @@ a[aria-expanded=false] .fa-angle-down {
     border-radius: 2px;
     margin-top: 15px;
     margin-left: 15px;
-    overflow: hidden
+    overflow: hidden;
 }
 
 .restaurant-entry .entry-logo img {
     max-width: 100%;
-    display: block
+    display: block;
 }
 
 .restaurant-entry .entry-dscr {
@@ -2105,14 +2122,16 @@ a[aria-expanded=false] .fa-angle-down {
         text-align: center;
         margin: 10px auto;
     }
+
     .restaurant-entry .entry-dscr {
         padding: 0 15px;
         text-align: center;
     }
+
     .restaurant-entry .right-review {
         padding: 15px 10px;
         border-left: transparent;
-        border-top: 1px solid #eaebeb
+        border-top: 1px solid #eaebeb;
     }
 }
 
@@ -2125,11 +2144,11 @@ a[aria-expanded=false] .fa-angle-down {
     overflow: hidden;
     margin: 0;
     padding: 0;
-    list-style: none
+    list-style: none;
 }
 
 .tags li {
-    float: left
+    float: left;
 }
 
 .tag {
@@ -2144,13 +2163,13 @@ a[aria-expanded=false] .fa-angle-down {
     border-radius: 2px;
     background: #ffffff;
     color: inherit;
-    font-weight: normal
+    font-weight: normal;
 }
 
 .tag:after,
 .tag:before {
     -webkit-transition: all .4s;
-    background: #fff
+    background: #fff;
 }
 
 .tag:before {
@@ -2257,7 +2276,7 @@ a[aria-expanded=false] .fa-angle-down {
 }
 
 .pricing-box .btn:hover {
-    color: #fff
+    color: #fff;
 }
 
 .pricing-faq div {
@@ -2333,7 +2352,7 @@ a[aria-expanded=false] .fa-angle-down {
 }
 
 .wwone__map-infobox__close span {
-    color: #fff
+    color: #fff;
 }
 
 .wwone__map-infobox__close:hover {
@@ -2403,7 +2422,7 @@ a[aria-expanded=false] .fa-angle-down {
 .wwone__map-infobox__inner__info strong {
     width: 60px;
     display: inline-block;
-    color: #25282b
+    color: #25282b;
 }
 
 .wwone__map-infobox__inner__btn {
@@ -2413,11 +2432,11 @@ a[aria-expanded=false] .fa-angle-down {
     display: inline-block;
     color: #FFF;
     text-decoration: none;
-    font-size: 13px
+    font-size: 13px;
 }
 
 .wwone__map-infobox__inner__btn:hover {
-    color: #fff
+    color: #fff;
 }
 
 @media (min-width: 897px) and (max-width: 970px) {
@@ -2425,6 +2444,7 @@ a[aria-expanded=false] .fa-angle-down {
         width: 40%;
         display: inline-block;
     }
+
     #map-result-section {
         width: 60%;
     }
@@ -2435,8 +2455,9 @@ a[aria-expanded=false] .fa-angle-down {
         width: 100%;
         display: inline-block;
         position: relative;
-        max-height: 420px
+        max-height: 420px;
     }
+
     #map-result-section {
         width: 100%;
     }

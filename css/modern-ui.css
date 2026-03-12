@@ -8,7 +8,7 @@
     --surface: #ffffff;
     --text-main: #2d3436;
     --text-muted: #636e72;
-    --glass: rgba(255, 255, 255, 0.8);
+    --glass: rgba(255, 255, 255, 0.85);
     --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.15);
@@ -16,6 +16,42 @@
     --radius-md: 16px;
     --radius-lg: 24px;
     --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.text-truncate-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Thêm vào dưới .text-truncate-1 */
+.text-truncate-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.text-truncate-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Đảm bảo thẻ card luôn chiếm trọn chiều cao và đẩy phần nút bấm xuống dưới cùng */
+.card-body.d-flex.flex-column {
+    justify-content: space-between;
+}
+
+.gap-2 {
+    gap: 0.5rem;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
@@ -88,8 +124,6 @@ body {
 }
 
 .banner-form {
-    background: var(--glass);
-    padding: 1rem;
     border-radius: var(--radius-md);
     display: inline-flex;
     box-shadow: var(--shadow-lg);
