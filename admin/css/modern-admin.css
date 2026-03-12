@@ -352,25 +352,29 @@ body {
 /* Responsive Design */
 @media (max-width: 991.98px) {
     :root {
-        --sidebar-width: 0px;
-    }
-
-    .left-sidebar {
-        left: -260px;
-        width: 260px;
-    }
-
-    .left-sidebar.active {
-        left: 0;
+        --sidebar-width: 260px;
+        /* Width remains same but hidden */
     }
 
     .header {
-        left: 0;
+        left: 0 !important;
         padding: 0 1rem;
+        width: 100%;
+    }
+
+    .left-sidebar {
+        left: -260px !important;
+        width: 260px !important;
+    }
+
+    .left-sidebar.active {
+        left: 0 !important;
     }
 
     .page-wrapper {
-        margin-left: 0;
+        margin-left: 0 !important;
+        padding-left: 0;
+        padding-right: 0;
     }
 
     .container-fluid {
