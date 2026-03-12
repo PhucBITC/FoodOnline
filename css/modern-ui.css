@@ -408,6 +408,30 @@ body {
     border-radius: var(--radius-sm);
 }
 
+/* Standardized Card Images */
+.dish-card-img {
+    height: 220px;
+    object-fit: cover;
+    width: 100%;
+    transition: var(--transition);
+}
+
+.restaurant-logo-wrap {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.restaurant-logo-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .entry-dscr h5 a {
     color: var(--secondary);
     font-weight: 700;
@@ -629,4 +653,130 @@ body {
 .status-cancelled {
     background: #ffebee;
     color: #d32f2f;
+}
+
+/* New Footer Styles */
+.main-footer {
+    background-color: var(--secondary);
+    color: #dfe6e9 !important;
+    padding: 100px 0 40px;
+    border-top: 5px solid var(--primary);
+}
+
+.footer-logo {
+    height: 45px;
+    margin-bottom: 2rem;
+}
+
+.footer-heading {
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.footer-heading::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 30px;
+    height: 3px;
+    background: var(--primary);
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-link {
+    color: #b2bec3 !important;
+    text-decoration: none !important;
+    display: block;
+    margin-bottom: 0.8rem;
+    transition: var(--transition);
+    font-size: 0.95rem;
+}
+
+.footer-link:hover {
+    color: var(--primary) !important;
+    transform: translateX(8px);
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    margin-top: 1.5rem;
+}
+
+.social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    color: white !important;
+    transition: var(--transition);
+    text-decoration: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.social-btn:hover {
+    background: var(--primary);
+    color: white !important;
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 94, 58, 0.3);
+}
+
+.newsletter-box {
+    background: rgba(255, 255, 255, 0.03);
+    padding: 2rem;
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.newsletter-input-group {
+    display: flex;
+    margin-top: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 5px;
+    border-radius: var(--radius-sm);
+    align-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.newsletter-input-group input {
+    background: transparent;
+    border: none;
+    padding: 0.8rem 1rem;
+    color: white;
+    flex-grow: 1;
+    min-width: 0;
+    /* Important to prevent flex items from overflowing */
+}
+
+.newsletter-input-group input:focus {
+    outline: none;
+}
+
+.newsletter-input-group .btn {
+    padding: 0.6rem 1.2rem;
+    /* Slightly smaller button for better fit */
+    flex-shrink: 0;
+    /* Prevents the button from being squashed or pushed out */
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.bottom-footer-modern {
+    margin-top: 80px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
 }

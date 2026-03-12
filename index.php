@@ -40,7 +40,7 @@ session_start();
             background-size: cover;
             background-position: center;
             opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            transition: opacity 1s ease-in-out;
         }
 
         .hero-slide.active {
@@ -151,17 +151,17 @@ session_start();
                     <div class="col-12 col-sm-6 col-md-4 mb-4 d-flex animate-up">
                         <div class="card border-0 shadow-sm overflow-hidden w-100 transition-up d-flex flex-column h-100">
                             <div class="position-relative">
-                                <img src="admin/Res_img/dishes/<?php echo $r['img']; ?>" class="card-img-top" alt="<?php echo $r['title']; ?>" style="height: 220px; object-fit: cover; width: 100%;">
+                                <img src="admin/Res_img/dishes/<?php echo $r['img']; ?>" class="card-img-top dish-card-img" alt="<?php echo $r['title']; ?>">
                             </div>
-                            <div class="card-body p-4 d-flex flex-column flex-grow-1 text-center">
-                                <div class="mb-2">
+                            <div class="card-body p-4 d-flex flex-column flex-grow-1" style="padding-left:10px;padding-bottom:10px;">
+                                <div class="text-center mb-3">
                                     <span class="text-primary font-weight-bold h5">$<?php echo $r['price']; ?></span>
                                 </div>
-                                <h5 class="card-title font-weight-bold mb-2 text-truncate-1" title="<?php echo $r['title']; ?>"><?php echo $r['title']; ?></h5>
-                                <p class="card-text text-muted small mb-4 flex-grow-1 text-truncate-2" title="<?php echo $r['slogan']; ?>"><?php echo $r['slogan']; ?></p>
+                                <h5 class="card-title font-weight-bold mb-2 text-truncate-1 text-center" title="<?php echo $r['title']; ?>"><?php echo $r['title']; ?></h5>
+                                <p class="card-text text-muted small mb-4 flex-grow-1 text-truncate-2 text-center" title="<?php echo $r['slogan']; ?>"><?php echo $r['slogan']; ?></p>
                                 
-                               <div class="d-flex justify-content-between align-items-center mt-auto w-100">
-                                 <a href="dishes.php?res_id=<?php echo $r['rs_id']; ?>" class="btn btn-primary">Order Now</a>
+                               <div class="d-flex justify-content-between align-items-center mt-auto w-100 gap-2">
+                                 <a href="dishes.php?res_id=<?php echo $r['rs_id']; ?>" class="btn btn-primary flex-grow-1">Order Now</a>
     
                                  <a href="dish_detail.php?d_id=<?php echo $r['d_id']; ?>" class="btn btn-outline-primary px-3 d-flex align-items-center justify-content-center" title="View Details">
                                     <i class="fa fa-eye"></i>
@@ -187,7 +187,7 @@ session_start();
                 while($rows = mysqli_fetch_array($ress)) {
                 ?>
                     <div class="col-12 col-md-6 mb-4 d-flex animate-up">
-                        <div class="restaurant-wrap p-3 bg-white shadow-sm rounded transition-up w-100 h-100 d-flex flex-column justify-content-center">
+                        <div class="restaurant-wrap p-3 p-lg-4 bg-white shadow-sm rounded transition-up w-100 h-100 d-flex flex-column justify-content-center">
                             <div class="d-flex align-items-center">
                                 <a href="restaurant_detail.php?res_id=<?php echo $rows['rs_id']; ?>" class="mr-3 overflow-hidden rounded" style="width: 100px; height: 100px; flex-shrink: 0;">
                                     <img src="admin/Res_img/<?php echo $rows['image']; ?>" alt="Restaurant" class="w-100 h-100" style="object-fit: cover;">
@@ -209,46 +209,67 @@ session_start();
                     </div>
                 <?php } ?>
             </div>
-            <div class="d-flex justify-content-center mt-4">
+            <div class="d-flex justify-content-center mt-5" style="
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom:20px;
+">
                 <a href="restaurants.php" class="btn btn-primary btn-lg px-5">View All Restaurants</a>
             </div>
         </div>
     </section>
 
-    <footer class="footer mt-5 py-5 bg-dark text-white">
+    <footer class="main-footer">
         <div class="container">
-            <div class="row top-footer">
-                <div class="col-md-4 mb-4">
-                    <img src="images/food-picky-logo.png" alt="Logo" class="mb-3" style="height: 40px;">
-                    <p class="text-muted">Premium Food Delivery experience right at your fingertips. Discover the best local flavors today.</p>
+            <div class="row">
+                <div class="col-lg-4 col-md-12 mb-5 mb-lg-0">
+                    <img src="images/food-picky-logo.png" alt="Logo" class="footer-logo">
+                    <p class="text-muted pr-lg-5">Savor the best local flavors delivered fresh and fast. We bring your favorite restaurant experience right to your doorstep with premium service and speed.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-btn"><i class="fa fa-facebook"></i></a>
+                        <a href="#" class="social-btn"><i class="fa fa-twitter"></i></a>
+                        <a href="#" class="social-btn"><i class="fa fa-instagram"></i></a>
+                        <a href="#" class="social-btn"><i class="fa fa-linkedin"></i></a>
+                    </div>
                 </div>
-                <div class="col-md-2 mb-4">
-                    <h5 class="mb-3">Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="index.php" class="text-muted">Home</a></li>
-                        <li><a href="restaurants.php" class="text-muted">Restaurants</a></li>
-                        <li><a href="registration.php" class="text-muted">Join Us</a></li>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.php" class="footer-link">Home</a></li>
+                        <li><a href="restaurants.php" class="footer-link">Restaurants</a></li>
+                        <li><a href="registration.php" class="footer-link">Join Us</a></li>
+                        <li><a href="#" class="footer-link">Latest Deals</a></li>
                     </ul>
                 </div>
-                <div class="col-md-2 mb-4">
-                    <h5 class="mb-3">About</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="#" class="text-muted">Our Story</a></li>
-                        <li><a href="#" class="text-muted">Team</a></li>
-                        <li><a href="#" class="text-muted">Contact</a></li>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="footer-heading">Company</h5>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link">About Us</a></li>
+                        <li><a href="#" class="footer-link">Our Team</a></li>
+                        <li><a href="#" class="footer-link">Careers</a></li>
+                        <li><a href="#" class="footer-link">Contact</a></li>
                     </ul>
                 </div>
-                <div class="col-md-4 mb-4">
-                    <h5 class="mb-3">Newsletter</h5>
-                    <p class="text-muted small">Stay updated with the latest offers.</p>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Your email address" style="background: rgba(255,255,255,0.05); border: none; color: white;">
-                        <button class="btn btn-primary ml-1 px-4">Subscribe</button>
+                
+                <div class="col-lg-4 col-md-4">
+                    <div class="newsletter-box">
+                        <h5 class="footer-heading">Newsletter</h5>
+                        <p class="text-muted small">Subscribe to get the latest offers and restaurant updates directly in your inbox.</p>
+                        <form action="#">
+                            <div class="newsletter-input-group">
+                                <input type="email" placeholder="Email Address" required>
+                                <button type="submit" class="btn btn-primary shadow-sm">Join</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-            <div class="bottom-footer text-center mt-5 pt-4 border-top border-secondary">
-                <p class="text-muted small mb-0">&copy; 2024 FoodPicko. All rights reserved.</p>
+            
+            <div class="bottom-footer-modern">
+                <p class="text-muted small mb-0">&copy; 2024 FoodPicko. Crafted with <i class="fa fa-heart text-primary"></i> for food lovers. All rights reserved.</p>
             </div>
         </div>
     </footer>
