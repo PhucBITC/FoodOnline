@@ -113,7 +113,6 @@ if(isset($_POST['submit'] )) {
     </div>
 </div>
 
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+    <?php include 'includes/footer.php'; ?>
 </body>
 </html>

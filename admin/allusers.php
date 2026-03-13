@@ -23,7 +23,10 @@ include("includes/head.php");
                     <div class="col-12">
                         <div class="card-modern shadow-sm border-0">
                             <div class="card-body p-4">
-                                <h4 class="card-title font-weight-bold mb-4">All Registered Users</h4>
+                                <div class="d-flex justify-content-between align-items-center mb-4">
+                                    <h4 class="card-title font-weight-bold mb-0">All Registered Users</h4>
+                                    <a href="add_users.php" class="btn btn-primary"><i class="fa fa-plus"></i> Create User</a>
+                                </div>
                                 <div class="table-responsive">
                                     <table id="myTable" class="table table-hover">
                                         <thead>

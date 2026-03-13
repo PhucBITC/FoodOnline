@@ -68,6 +68,9 @@
                 <li> 
                     <a href="add_menu.php" class="<?php echo ($current_page == 'add_menu.php') ? 'active' : ''; ?>"><i class="fa fa-plus-circle"></i><span>Menu Item</span></a>
                 </li>
+                <li> 
+                    <a href="add_users.php" class="<?php echo ($current_page == 'add_users.php') ? 'active' : ''; ?>"><i class="fa fa-plus-circle"></i><span>User</span></a>
+                </li>
                 
                 <li class="nav-divider mt-4" style="border-top: 1px solid rgba(255,255,255,0.1);"></li>
                 <li> 

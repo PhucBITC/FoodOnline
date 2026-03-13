@@ -1,3 +1,49 @@
+<?php
+include("connection/connect.php"); 
+error_reporting(0); 
+session_start(); 
+
+// Redirect if already logged in
+if(isset($_SESSION["user_id"])) {
+    header("location:index.php");
+    exit;
+}
+if(isset($_SESSION["adm_id"])) {
+    header("location:admin/dashboard.php");
+    exit;
+}
+
+if(isset($_POST['submit'])) {
+    $username = $_POST['username'];  
+    $password = md5($_POST['password']);
+    
+    if(!empty($_POST["submit"])) {
+        // 1. Check if it's an Admin
+        $adminquery ="SELECT * FROM admin WHERE username='$username' && password='$password'"; 
+        $adminresult=mysqli_query($db, $adminquery); 
+        $adminrow=mysqli_fetch_array($adminresult);
+
+        if(is_array($adminrow)) {
+            $_SESSION["adm_id"] = $adminrow['adm_id']; 
+            $success = "Welcome Admin! Redirecting to Dashboard...";
+            header("refresh:1;url=admin/dashboard.php"); 
+        } else {
+            // 2. If not admin, check if it's a regular User
+            $userquery ="SELECT * FROM users WHERE username='$username' && password='$password'"; 
+            $userresult=mysqli_query($db, $userquery); 
+            $userrow=mysqli_fetch_array($userresult);
+
+            if(is_array($userrow)) {
+                $_SESSION["user_id"] = $userrow['u_id']; 
+                $success = "Login successful! Welcome back.";
+                header("refresh:1;url=index.php"); 
+            } else {
+                $message = "Invalid Username or Password!"; 
+            }
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,29 +56,6 @@
 </head>
 
 <body class="auth-page">
-<?php
-include("connection/connect.php"); 
-error_reporting(0); 
-session_start(); 
-
-if(isset($_POST['submit'])) {
-	$username = $_POST['username'];  
-	$password = $_POST['password'];
-	
-	if(!empty($_POST["submit"])) {
-        $loginquery ="SELECT * FROM users WHERE username='$username' && password='".md5($password)."'"; 
-        $result=mysqli_query($db, $loginquery); 
-        $row=mysqli_fetch_array($result);
-	
-        if(is_array($row)) {
-            $_SESSION["user_id"] = $row['u_id']; 
-            header("refresh:1;url=index.php"); 
-        } else {
-            $message = "Invalid Username or Password!"; 
-        }
-	}
-}
-?>
 
 <div class="auth-card animate-up">
     <div class="mb-4">
@@ -47,6 +70,12 @@ if(isset($_POST['submit'])) {
     <?php if(isset($message)): ?>
         <div class="alert alert-danger" role="alert">
             <?php echo $message; ?>
+        </div>
+    <?php endif; ?>
+
+    <?php if(isset($success)): ?>
+        <div class="alert alert-success" role="alert">
+            <?php echo $success; ?>
         </div>
     <?php endif; ?>
 
@@ -67,11 +96,13 @@ if(isset($_POST['submit'])) {
     <div class="auth-footer">
         Not registered? <a href="registration.php">Create an account</a>
         <br><br>
-        <a href="index.php" class="text-muted small"><i class="fa fa-arrow-left"></i> Back to Homepage</a>
+        <div class="d-flex justify-content-between align-items-center">
+            <a href="index.php" class="text-muted small"><i class="fa fa-arrow-left"></i> Back to Homepage</a>
+            <a href="admin/index.php" class="text-primary small font-weight-bold">Admin Portal <i class="fa fa-lock"></i></a>
+        </div>
     </div>
 </div>
 
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+    <?php include 'includes/footer.php'; ?>
 </body>
 </html>

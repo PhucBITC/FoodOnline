@@ -1,30 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 include("connection/connect.php");
 include_once 'product-action.php';
 error_reporting(0);
 session_start();
 
-if(empty($_SESSION["user_id"])) {
+// Redirect to login only if NO account is logged in
+if(empty($_SESSION["user_id"]) && empty($_SESSION["adm_id"])) {
     header('location:login.php');
-} else {
-    $item_total = 0;
-    if(isset($_SESSION["cart_item"])) {
-        foreach ($_SESSION["cart_item"] as $item) {
-            $item_total += ($item["price"]*$item["quantity"]);
-        }
-    }
+    exit;
+}
 
-    if(isset($_POST['submit'])) {
-        foreach ($_SESSION["cart_item"] as $item) {
-            $SQL="insert into users_orders(u_id,title,quantity,price) values('".$_SESSION["user_id"]."','".$item["title"]."','".$item["quantity"]."','".$item["price"]."')";
-            mysqli_query($db,$SQL);
-        }
-        $success = "Thank you! Your order has been placed successfully!";
-        unset($_SESSION["cart_item"]);
+$item_total = 0;
+if(isset($_SESSION["cart_item"])) {
+    foreach ($_SESSION["cart_item"] as $item) {
+        $item_total += ($item["price"]*$item["quantity"]);
     }
+}
+
+if(isset($_POST['submit'])) {
+    // Both regular users and admins can place orders
+    $user_id = !empty($_SESSION["user_id"]) ? $_SESSION["user_id"] : "NULL";
+    $adm_id = !empty($_SESSION["adm_id"]) ? $_SESSION["adm_id"] : "NULL";
+
+    foreach ($_SESSION["cart_item"] as $item) {
+        $SQL="insert into users_orders(u_id,adm_id,title,quantity,price) values($user_id,$adm_id,'".$item["title"]."','".$item["quantity"]."','".$item["price"]."')";
+        mysqli_query($db,$SQL);
+    }
+    $success = "Thank you! Your order has been placed successfully!";
+    unset($_SESSION["cart_item"]);
+}
 ?>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -97,12 +104,17 @@ if(empty($_SESSION["user_id"])) {
                     <ul class="nav navbar-nav">
                         <li class="nav-item"> <a class="nav-link" href="index.php">Home</a> </li>
                         <li class="nav-item"> <a class="nav-link" href="restaurants.php">Restaurants</a> </li>
-                        <?php if(!empty($_SESSION["user_id"])): ?>
-                            <li class="nav-item"> <a class="nav-link" href="your_orders.php">Your Orders</a></li>
-                            <li class="nav-item"> <a class="nav-link text-danger" href="logout.php">Logout</a> </li>
-                        <?php else: ?>
+                        <?php if(isset($_SESSION["adm_id"])): ?>
+                            <li class="nav-item"><a href="admin/dashboard.php" class="nav-link text-primary font-weight-bold"> Admin Panel</a> </li>
+                        <?php endif; ?>
+                        <?php if(empty($_SESSION["user_id"]) && empty($_SESSION["adm_id"])): ?>
                             <li class="nav-item"><a href="login.php" class="nav-link">Login</a> </li>
                             <li class="nav-item"><a href="registration.php" class="nav-link">Signup</a> </li>
+                        <?php else: ?>
+                            <?php if(!empty($_SESSION["user_id"]) || !empty($_SESSION["adm_id"])): ?>
+                                <li class="nav-item"> <a class="nav-link" href="your_orders.php">Your Orders</a></li>
+                            <?php endif; ?>
+                            <li class="nav-item"> <a class="nav-link text-danger" href="logout.php">Logout</a> </li>
                         <?php endif; ?>
                     </ul>
                 </div>
@@ -186,36 +198,6 @@ if(empty($_SESSION["user_id"])) {
             <?php endif; ?>
         </div>
 
-        <footer class="footer mt-5">
-            <div class="container text-center text-md-left">
-                <div class="row top-footer">
-                    <div class="col-xs-12 col-sm-4 mb-4">
-                        <img src="images/food-picky-logo.png" alt="Logo" class="mb-3" style="height: 40px;">
-                        <p class="text-muted">High quality food delivered to your doorstep.</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 mb-4">
-                        <h5>Quick Links</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="index.php">Home</a></li>
-                            <li><a href="restaurants.php">Restaurants</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 mb-4">
-                        <h5>Contact</h5>
-                        <p class="text-muted"><i class="fa fa-envelope"></i> support@foodpicko.com</p>
-                    </div>
-                </div>
-                <div class="bottom-footer text-center mt-4 pt-3 border-top border-dark">
-                    <p class="text-muted">&copy; 2024 FoodPicko. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <?php include 'includes/footer.php'; ?>
 </body>
 </html>
-<?php
-}
-?>

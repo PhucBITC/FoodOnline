@@ -40,15 +40,20 @@ include("includes/head.php");
                                         </thead>
                                         <tbody>
                                             <?php
-                                                $sql="SELECT users.*, users_orders.* FROM users INNER JOIN users_orders ON users.u_id=users_orders.u_id ORDER BY users_orders.o_id DESC";
+                                                $sql="SELECT users_orders.*, users.username as user_name, admin.username as admin_name 
+                                                      FROM users_orders 
+                                                      LEFT JOIN users ON users.u_id = users_orders.u_id 
+                                                      LEFT JOIN admin ON admin.adm_id = users_orders.adm_id 
+                                                      ORDER BY users_orders.o_id DESC";
                                                 $query=mysqli_query($db,$sql);
                                                 
                                                 if(!mysqli_num_rows($query) > 0) {
                                                     echo '<tr><td colspan="8" class="text-center py-5">No Orders Found</td></tr>';
                                                 } else {				
                                                     while($rows=mysqli_fetch_array($query)) {
+                                                        $customer = !empty($rows['admin_name']) ? '<span class="text-primary"><i class="fa fa-user-secret"></i> Admin: '.$rows['admin_name'].'</span>' : $rows['user_name'];
                                                         echo '<tr>
-                                                            <td class="font-weight-bold">'.$rows['username'].'</td>
+                                                            <td class="font-weight-bold">'.$customer.'</td>
                                                             <td>'.$rows['title'].'</td>
                                                             <td><span class="badge badge-light">'.$rows['quantity'].'</span></td>
                                                             <td class="font-weight-bold text-primary">$'.$rows['price'].'</td>

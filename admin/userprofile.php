@@ -4,8 +4,8 @@
 include("../connection/connect.php");
 error_reporting(0);
 session_start();
-if(strlen($_SESSION['user_id'])==0) { 
-    header('location:login.php');
+if(empty($_SESSION['adm_id']) && empty($_SESSION['user_id'])) { 
+    header('location:../login.php');
 } else {
 ?>
 <head>
@@ -39,7 +39,15 @@ if(strlen($_SESSION['user_id'])==0) {
         <?php 
             $ret1=mysqli_query($db,"select * FROM users_orders where o_id='".$_GET['newform_id']."'");
             $ro=mysqli_fetch_array($ret1);
-            $ret2=mysqli_query($db,"select * FROM users where u_id='".$ro['u_id']."'");
+            
+            if(!empty($ro['adm_id'])) {
+                // It's an admin order
+                $ret2=mysqli_query($db,"select *, username as f_name, '' as l_name, 'N/A' as phone, 'Active' as status_text FROM admin where adm_id='".$ro['adm_id']."'");
+            } else {
+                // It's a regular user order
+                $ret2=mysqli_query($db,"select *, (case when status=1 then 'Active' else 'Blocked' end) as status_text FROM users where u_id='".$ro['u_id']."'");
+            }
+            
             while($row=mysqli_fetch_array($ret2)) {
         ?>
         <div class="profile-header">
@@ -67,11 +75,10 @@ if(strlen($_SESSION['user_id'])==0) {
             <div class="info-row">
                 <span class="info-label">Account Status</span>
                 <span class="info-value">
-                    <?php if($row['status']==1) { 
-                        echo "<span class='status-badge status-delivered'>Active</span>";
-                    } else {
-                        echo "<span class='status-badge status-cancelled'>Blocked</span>";
-                    } ?>
+                    <?php 
+                        $badge_class = ($row['status_text'] == 'Active') ? 'status-delivered' : 'status-cancelled';
+                        echo "<span class='status-badge $badge_class'>".$row['status_text']."</span>";
+                    ?>
                 </span>
             </div>
             

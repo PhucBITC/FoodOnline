@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 include("connection/connect.php"); 
 error_reporting(0);
 session_start();
 include_once 'product-action.php'; 
 ?>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -25,12 +25,17 @@ include_once 'product-action.php';
                     <ul class="nav navbar-nav">
                         <li class="nav-item"> <a class="nav-link" href="index.php">Home</a> </li>
                         <li class="nav-item"> <a class="nav-link active" href="restaurants.php">Restaurants</a> </li>
+                        <?php if(isset($_SESSION["adm_id"])): ?>
+                            <li class="nav-item"><a href="admin/dashboard.php" class="nav-link text-primary font-weight-bold">Admin Panel</a> </li>
+                        <?php endif; ?>
                         <?php
-                        if(empty($_SESSION["user_id"])) {
+                        if(empty($_SESSION["user_id"]) && empty($_SESSION["adm_id"])) {
                             echo '<li class="nav-item"><a href="login.php" class="nav-link">Login</a> </li>
                                   <li class="nav-item"><a href="registration.php" class="nav-link">Signup</a> </li>';
                         } else {
-                            echo '<li class="nav-item"><a href="your_orders.php" class="nav-link">Your Orders</a> </li>';
+                            if(!empty($_SESSION["user_id"]) || !empty($_SESSION["adm_id"])) {
+                                echo '<li class="nav-item"><a href="your_orders.php" class="nav-link">Your Orders</a> </li>';
+                            }
                             echo '<li class="nav-item"><a href="logout.php" class="nav-link text-danger">Logout</a> </li>';
                         }
                         ?>
@@ -157,33 +162,6 @@ include_once 'product-action.php';
             </div>
         </div>
 
-        <footer class="footer">
-            <div class="container text-center text-md-left">
-                <div class="row top-footer">
-                    <div class="col-xs-12 col-sm-4 mb-4">
-                        <img src="images/food-picky-logo.png" alt="Logo" class="mb-3" style="height: 40px;">
-                        <p class="text-muted">Discover the best food and drinks in your city.</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 mb-4">
-                        <h5>Quick Links</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="index.php">Home</a></li>
-                            <li><a href="restaurants.php">Restaurants</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 mb-4">
-                        <h5>Contact</h5>
-                        <p class="text-muted"><i class="fa fa-envelope"></i> support@foodpicko.com</p>
-                    </div>
-                </div>
-                <div class="bottom-footer text-center mt-4 pt-3 border-top border-dark">
-                    <p class="text-muted">&copy; 2024 FoodPicko. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <?php include 'includes/footer.php'; ?>
 </body>
 </html>

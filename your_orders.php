@@ -1,14 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
 include("connection/connect.php");
 error_reporting(0);
 session_start();
 
-if(empty($_SESSION['user_id'])) {
+if(empty($_SESSION['user_id']) && empty($_SESSION['adm_id'])) {
     header('location:login.php');
-} else {
+    exit;
+}
 ?>
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,7 +29,12 @@ if(empty($_SESSION['user_id'])) {
                     <ul class="nav navbar-nav">
                         <li class="nav-item"> <a class="nav-link" href="index.php">Home</a> </li>
                         <li class="nav-item"> <a class="nav-link" href="restaurants.php">Restaurants</a> </li>
-                        <li class="nav-item"> <a class="nav-link active" href="your_orders.php">Your Orders</a></li>
+                        <?php if(isset($_SESSION["adm_id"])): ?>
+                            <li class="nav-item"><a href="admin/dashboard.php" class="nav-link text-primary font-weight-bold">Admin Panel</a> </li>
+                        <?php endif; ?>
+                        <?php if(!empty($_SESSION["user_id"]) || !empty($_SESSION["adm_id"])): ?>
+                            <li class="nav-item"> <a class="nav-link active" href="your_orders.php">Your Orders</a></li>
+                        <?php endif; ?>
                         <li class="nav-item"> <a class="nav-link text-danger" href="logout.php">Logout</a> </li>
                     </ul>
                 </div>
@@ -63,7 +69,9 @@ if(empty($_SESSION['user_id'])) {
                                     </thead>
                                     <tbody>
                                         <?php 
-                                        $query_res= mysqli_query($db,"select * from users_orders where u_id='".$_SESSION['user_id']."' order by date desc");
+                                        $user_id = !empty($_SESSION['user_id']) ? $_SESSION['user_id'] : 0;
+                                        $adm_id = !empty($_SESSION['adm_id']) ? $_SESSION['adm_id'] : 0;
+                                        $query_res= mysqli_query($db,"select * from users_orders where u_id='$user_id' OR adm_id='$adm_id' order by date desc");
                                         if(!mysqli_num_rows($query_res) > 0 ) {
                                             echo '<tr><td colspan="6" class="text-center py-5">You have no orders yet.</td></tr>';
                                         } else {			      
@@ -77,13 +85,13 @@ if(empty($_SESSION['user_id'])) {
                                                     <?php 
                                                     $status=$row['status'];
                                                     if($status=="" or $status=="NULL") {
-                                                        echo '<span class="status-badge status-dispatch">Dispatched</span>';
+                                                        echo '<span class="status-badge status-dispatch"><i class="fa fa-clock-o mr-1"></i> Order Received</span>';
                                                     } else if($status=="in process") {
-                                                        echo '<span class="status-badge status-process"><i class="fa fa-cog fa-spin mr-1"></i> On Way</span>';
+                                                        echo '<span class="status-badge status-process"><i class="fa fa-cog fa-spin mr-1"></i> Being Prepared / On Way</span>';
                                                     } else if($status=="closed") {
-                                                        echo '<span class="status-badge status-delivered"><i class="fa fa-check-circle mr-1"></i> Delivered</span>';
+                                                        echo '<span class="status-badge status-delivered"><i class="fa fa-check-circle mr-1"></i> Delivered Successfully</span>';
                                                     } else if($status=="rejected") {
-                                                        echo '<span class="status-badge status-cancelled"><i class="fa fa-close mr-1"></i> Cancelled</span>';
+                                                        echo '<span class="status-badge status-cancelled"><i class="fa fa-close mr-1"></i> Order Cancelled</span>';
                                                     } 
                                                     ?>
                                                 </td>
@@ -107,36 +115,6 @@ if(empty($_SESSION['user_id'])) {
             </div>
         </section>
 
-        <footer class="footer mt-5">
-            <div class="container text-center text-md-left">
-                <div class="row top-footer">
-                    <div class="col-xs-12 col-sm-4 mb-4">
-                        <img src="images/food-picky-logo.png" alt="Logo" class="mb-3" style="height: 40px;">
-                        <p class="text-muted">High quality food delivered to your doorstep.</p>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 mb-4">
-                        <h5>Quick Links</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="index.php">Home</a></li>
-                            <li><a href="restaurants.php">Restaurants</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-12 col-sm-4 mb-4">
-                        <h5>Contact</h5>
-                        <p class="text-muted"><i class="fa fa-envelope"></i> support@foodpicko.com</p>
-                    </div>
-                </div>
-                <div class="bottom-footer text-center mt-4 pt-3 border-top border-dark">
-                    <p class="text-muted">&copy; 2024 FoodPicko. All rights reserved.</p>
-                </div>
-            </div>
-        </footer>
-    </div>
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <?php include 'includes/footer.php'; ?>
 </body>
 </html>
-<?php
-}
-?>

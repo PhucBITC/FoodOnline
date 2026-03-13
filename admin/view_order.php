@@ -38,7 +38,11 @@ include("includes/head.php");
                         <div class="card-modern shadow-sm border-0">
                             <div class="card-body p-4">
                                 <?php
-                                    $sql="SELECT users.*, users_orders.* FROM users INNER JOIN users_orders ON users.u_id=users_orders.u_id where o_id='".$_GET['user_upd']."'";
+                                    $sql="SELECT users_orders.*, users.username as user_name, admin.username as admin_name 
+                                          FROM users_orders 
+                                          LEFT JOIN users ON users.u_id = users_orders.u_id 
+                                          LEFT JOIN admin ON admin.adm_id = users_orders.adm_id 
+                                          WHERE o_id='".$_GET['user_upd']."'";
                                     $query=mysqli_query($db,$sql);
                                     $rows=mysqli_fetch_array($query);
                                 ?>
@@ -61,7 +65,15 @@ include("includes/head.php");
                                         <tbody>
                                             <tr>
                                                 <td class="font-weight-bold bg-light" style="width: 250px;">Customer Username</td>
-                                                <td><?php echo $rows['username']; ?></td>
+                                                <td>
+                                                    <?php 
+                                                        if(!empty($rows['admin_name'])) {
+                                                            echo '<span class="text-primary"><i class="fa fa-user-secret"></i> Admin: '.$rows['admin_name'].'</span>';
+                                                        } else {
+                                                            echo $rows['user_name'];
+                                                        }
+                                                    ?>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td class="font-weight-bold bg-light">Dish Title</td>
