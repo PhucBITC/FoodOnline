@@ -26,7 +26,8 @@ if(isset($_POST['submit'])) {
         if(is_array($adminrow)) {
             $_SESSION["adm_id"] = $adminrow['adm_id']; 
             $success = "Welcome Admin! Redirecting to Dashboard...";
-            header("refresh:1;url=admin/dashboard.php"); 
+            header("location:admin/dashboard.php"); 
+            exit();
         } else {
             // 2. If not admin, check if it's a regular User
             $userquery ="SELECT * FROM users WHERE username='$username' && password='$password'"; 
@@ -57,52 +58,61 @@ if(isset($_POST['submit'])) {
 
 <body class="auth-page">
 
-<div class="auth-card animate-up">
-    <div class="mb-4">
-        <a href="index.php">
-            <img src="images/food-picky-logo.png" alt="Logo" style="height: 45px;">
-        </a>
-    </div>
-    
-    <h2>Welcome Back!</h2>
-    <p>Sign in to continue your food journey</p>
-
-    <?php if(isset($message)): ?>
-        <div class="alert alert-danger" role="alert">
-            <?php echo $message; ?>
-        </div>
-    <?php endif; ?>
-
-    <?php if(isset($success)): ?>
-        <div class="alert alert-success" role="alert">
-            <?php echo $success; ?>
-        </div>
-    <?php endif; ?>
-
-    <form action="" method="post">
-        <div class="form-group">
-            <label>Username</label>
-            <input type="text" class="form-control" placeholder="Enter your username" name="username" required>
+<div class="auth-container">
+    <div class="auth-card animate-up">
+        <div class="mb-4">
+            <a href="index.php">
+                <img src="images/food-picky-logo.png" alt="Logo" style="height: 45px;">
+            </a>
         </div>
         
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" placeholder="Enter your password" name="password" required>
-        </div>
+        <h2>Welcome Back!</h2>
+        <p>Sign in to continue your food journey</p>
+
+        <?php if(isset($message)): ?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo $message; ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if(isset($success)): ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $success; ?>
+            </div>
+        <?php endif; ?>
+
+        <form action="" method="post">
+            <div class="form-group">
+                <label>Username</label>
+                <input type="text" class="form-control" placeholder="Enter your username" name="username" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" class="form-control" placeholder="Enter your password" name="password" required>
+            </div>
+            
+            <input type="submit" name="submit" class="btn theme-btn btn-block" value="Login">
+        </form>
         
-        <input type="submit" name="submit" class="btn theme-btn btn-block" value="Login">
-    </form>
-    
-    <div class="auth-footer">
-        Not registered? <a href="registration.php">Create an account</a>
-        <br><br>
-        <div class="d-flex justify-content-between align-items-center">
-            <a href="index.php" class="text-muted small"><i class="fa fa-arrow-left"></i> Back to Homepage</a>
-            <a href="admin/index.php" class="text-primary small font-weight-bold">Admin Portal <i class="fa fa-lock"></i></a>
+        <div class="auth-footer">
+            Not registered? <a href="registration.php">Create an account</a>
+            <br><br>
+            <div class="d-flex justify-content-between align-items-center">
+                <a href="index.php" class="text-muted small"><i class="fa fa-arrow-left"></i> Back to Homepage</a>
+                <a href="admin/index.php" class="text-primary small font-weight-bold">Admin Portal <i class="fa fa-lock"></i></a>
+            </div>
         </div>
     </div>
 </div>
 
-    <?php include 'includes/footer.php'; ?>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/animsition.min.js"></script>
+    <script src="js/bootstrap-slider.min.js"></script>
+    <script src="js/jquery.isotope.min.js"></script>
+    <script src="js/headroom.js"></script>
+    <script src="js/foodpicky.min.js"></script>
 </body>
 </html>

@@ -1,10 +1,3 @@
-<?php
-session_start();
-error_reporting(0);
-if(empty($_SESSION["adm_id"])) {
-    header('location:index.php');
-}
-?>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

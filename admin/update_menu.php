@@ -1,9 +1,8 @@
+<?php include("includes/auth_check.php"); ?>
 <!DOCTYPE html>
 <html lang="en">
 <?php
 include("../connection/connect.php");
-error_reporting(0);
-session_start();
 
 if(isset($_POST['submit'])) {
     if(empty($_POST['d_name'])||empty($_POST['about'])||$_POST['price']==''||$_POST['res_name']=='') {	

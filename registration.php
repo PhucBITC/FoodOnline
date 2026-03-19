@@ -45,74 +45,83 @@ if(isset($_POST['submit'] )) {
 
 <body class="auth-page">
 
-<div class="auth-card reg-card animate-up">
-    <div class="mb-4 text-center">
-        <a href="index.php">
-            <img src="images/food-picky-logo.png" alt="Logo" style="height: 45px;">
-        </a>
-    </div>
-    
-    <h2>Create Your Account</h2>
-    <p>Join FoodPicko and start enjoying delicious food!</p>
-
-    <?php if($message): ?>
-        <div class="alert alert-danger" role="alert">
-            <?php echo $message; ?>
-        </div>
-    <?php endif; ?>
-
-    <?php if($success): ?>
-        <div class="alert alert-success" role="alert">
-            <?php echo $success; ?>
-        </div>
-    <?php endif; ?>
-
-    <form action="" method="post">
-        <div class="reg-grid">
-            <div class="form-group">
-                <label>Username</label>
-                <input class="form-control" type="text" name="username" placeholder="Pick a username" required> 
-            </div>
-            <div class="form-group">
-                <label>First Name</label>
-                <input class="form-control" type="text" name="firstname" placeholder="Enter first name" required> 
-            </div>
-            <div class="form-group">
-                <label>Last Name</label>
-                <input class="form-control" type="text" name="lastname" placeholder="Enter last name" required> 
-            </div>
-            <div class="form-group">
-                <label>Email Address</label>
-                <input type="email" class="form-control" name="email" placeholder="email@example.com" required>
-            </div>
-            <div class="form-group">
-                <label>Phone Number</label>
-                <input class="form-control" type="text" name="phone" placeholder="Your phone number" required>
-            </div>
-            <div class="form-group">
-                <label>Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Min. 6 characters" required> 
-            </div>
-            <div class="form-group">
-                <label>Confirm Password</label>
-                <input type="password" class="form-control" name="cpassword" placeholder="Repeat your password" required> 
-            </div>
-            <div class="form-group">
-                <label>Delivery Address</label>
-                <textarea class="form-control" name="address" rows="1" placeholder="Where should we deliver?" required></textarea>
-            </div>
+<div class="auth-container">
+    <div class="auth-card reg-card animate-up">
+        <div class="mb-4 text-center">
+            <a href="index.php">
+                <img src="images/food-picky-logo.png" alt="Logo" style="height: 45px;">
+            </a>
         </div>
         
-        <input type="submit" name="submit" class="btn theme-btn btn-block" value="Register Now">
-    </form>
-    
-    <div class="auth-footer text-center">
-        Already have an account? <a href="login.php">Sign In</a>
-        <br><br>
-        <a href="index.php" class="text-muted small"><i class="fa fa-arrow-left"></i> Back to Homepage</a>
+        <h2>Create Your Account</h2>
+        <p>Join FoodPicko and start enjoying delicious food!</p>
+
+        <?php if($message): ?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo $message; ?>
+            </div>
+        <?php endif; ?>
+
+        <?php if($success): ?>
+            <div class="alert alert-success" role="alert">
+                <?php echo $success; ?>
+            </div>
+        <?php endif; ?>
+
+        <form action="" method="post">
+            <div class="reg-grid">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input class="form-control" type="text" name="username" placeholder="Pick a username" required> 
+                </div>
+                <div class="form-group">
+                    <label>First Name</label>
+                    <input class="form-control" type="text" name="firstname" placeholder="Enter first name" required> 
+                </div>
+                <div class="form-group">
+                    <label>Last Name</label>
+                    <input class="form-control" type="text" name="lastname" placeholder="Enter last name" required> 
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" class="form-control" name="email" placeholder="email@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input class="form-control" type="text" name="phone" placeholder="Your phone number" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" class="form-control" name="password" placeholder="Min. 6 characters" required> 
+                </div>
+                <div class="form-group">
+                    <label>Confirm Password</label>
+                    <input type="password" class="form-control" name="cpassword" placeholder="Repeat your password" required> 
+                </div>
+                <div class="form-group">
+                    <label>Delivery Address</label>
+                    <textarea class="form-control" name="address" rows="1" placeholder="Where should we deliver?" required></textarea>
+                </div>
+            </div>
+            
+            <input type="submit" name="submit" class="btn theme-btn btn-block" value="Register Now">
+        </form>
+        
+        <div class="auth-footer text-center">
+            Already have an account? <a href="login.php">Sign In</a>
+            <br><br>
+            <a href="index.php" class="text-muted small"><i class="fa fa-arrow-left"></i> Back to Homepage</a>
+        </div>
     </div>
 </div>
 
-    <?php include 'includes/footer.php'; ?>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/tether.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/animsition.min.js"></script>
+    <script src="js/bootstrap-slider.min.js"></script>
+    <script src="js/jquery.isotope.min.js"></script>
+    <script src="js/headroom.js"></script>
+    <script src="js/foodpicky.min.js"></script>
 </body>
 </html>
